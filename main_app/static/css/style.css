@@ -1,0 +1,31 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #f8f9fa !important;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  background-color: #343a40 !important;
+  color: #f8f9fa;
+  padding: 10px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.carousel {
+  margin-bottom: 100px;
+}
+
+.carousel-inner {
+  max-height: 50vh;
+}
+.carousel-inner .carousel-item img {
+  height: 50vh;
+  object-fit: cover;
+  /* object-position: 80% 100%; */
+}

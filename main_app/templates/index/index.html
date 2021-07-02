@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Welcome {{user.username}}</h1>
+<hr>
+<h2>Index Page</h2>
+{% for job in jobs %}
+<div>
+    <span>{{ job.company_name }}</span>
+    <span>{{ job.position }}</span>
+
+    {% if job.description %}
+    <p>Description: {{ job.description }}</p>
+
+    {% else %}
+    <p>No Description</p>
+    {% endif %}
+    <a href="{% url 'detail' job.id %}">Detail</a>
+</div>
+<hr>
+{% endfor %}
+
+{% endblock %}

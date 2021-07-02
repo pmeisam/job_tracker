@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Welcome {{user.username}}</h1>
+<hr>
+<h2>Detail Page</h2>
+<h1>{{job.company_name}}</h1>
+<div>
+    <a href="{% url 'jobs_update' job.id %}">Edit</a>
+    <a href="{% url 'jobs_delete' job.id %}">Delete</a>
+  </div>
+
+{% endblock %}

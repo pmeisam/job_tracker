@@ -1,0 +1,53 @@
+1- to start a django project = $ django-admin startproject catcollector
+
+2- to create the main_app module = $ python3 manage.py startapp main_app
+
+3- include main_app in INSTALLED_APPS in settings.py
+
+4- to run the server $ python3 manage.py runserver and navigate to localhost:8000
+
+5- to create database $ createdb catcollector
+A Django project's configuration lives in settings.py. Let's update it to use our catcollector database:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'catcollector',
+    }
+}
+
+6- Now let's test our database connection by getting rid of the red unapplied migration message:
+$ python3 manage.py migrate
+
+7-  to run test harness $python3 test-harness.py
+
+8- The following command creates migration files for all models that have been added or changed since the last migration:
+$ python3 manage.py makemigrations
+Simply creating migration files does not update the database.
+To synchronize the database's schema with the code in the migration files, we "migrate" using this command:
+$ python3 manage.py migrate
+
+9- To checkout the tables we have in our database, open psql:
+
+$ psql
+List all databases:
+
+\l
+Connect to the catcollector database:
+
+\c catcollector
+List the tables:
+
+\d
+You'll find quite a few tables named like django_*. These tables are used by the framework to track migrations, server-side sessions, etc.
+
+10- to access the python model in shell
+$ python3 manage.py shell   
+>>> from main_app.models import Movie
+>>> Movie.objects.all()
+<QuerySet []>
+>>> m =  Movie(name='Ghayeghran', description='description', cast='casts', year=2021, genre='Drama', image="https://persianhive.com/wp-content/uploads/2021/06/ghayegh-ran.jpg", movie="https://videos.files.wordpress.com/6sclyjJW/ghayeghran.mp4")
+>>> m.save()
+>>> m.id
+1
+more postgresql data request examples on file:///Users/meisam/Documents/code/WDI-CC-6/work/w08/d1/03-intro-to-django-models/intro-to-django-models.md
