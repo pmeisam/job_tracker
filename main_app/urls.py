@@ -11,4 +11,5 @@ urlpatterns = [
     path('jobs/form', views.JobCreate.as_view(), name="job_create"),
     path('jobs/<int:pk>/update/', views.JobUpdate.as_view(), name='jobs_update'),
     path('jobs/<int:pk>/delete/', views.JobDelete.as_view(), name='jobs_delete'),
+    path('columns/form', views.ColumnCreate.as_view(), name='column_create')
 ]

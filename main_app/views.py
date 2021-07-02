@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import Job
+from .models import Job, Column
 
 
 # Define the home view
@@ -25,7 +25,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('index')
         else:
             error_message = 'Invalid credentials - try again'
     form = UserCreationForm()
@@ -63,7 +63,19 @@ class JobUpdate(UpdateView):
   template_name = 'index/job_form.html'
   fields = ['company_name', 'description']
 
+
 class JobDelete(DeleteView):
   model = Job
   template_name = 'index/confirm_delete.html'
   success_url = '/jobs/'
+
+
+class ColumnCreate(CreateView):
+    model = Column
+    fields = ['name']
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    template_name = 'index/job_form.html'
+    success_url = '/jobs/'
